@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer utilities {
+  input[type='file']::file-selector-button {
+    @apply text-sm text-black bg-gray-200 border border-black rounded-lg px-4 py-2 cursor-pointer hover:bg-gray-700;
+  }
+}
