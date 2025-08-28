@@ -20,9 +20,17 @@ function PostForm({ post }) {
 
   const submit = async (data) => {
     if (post) {
-      const file = data.image[0] //& Agar nayi image di hai to upload kro varna null krdo.
-        ? await appwriteService.uploadFile(data.image[0])
-        : null;
+      const updatedFields = {};
+      //& Compare each field and add to updatedFields if changed
+      if (data.title !== post.title) updatedFields.title = data.title;
+      if (data.slug !== post.$id) updatedFields.slug = data.slug;
+      if (data.content !== post.content) updatedFields.content = data.content;
+      if (data.status !== post.status) updatedFields.status = data.status;
+
+      let file = null;
+      if (data.image && data.image[0]) {
+        file = await appwriteService.uploadFile(data.image[0]);
+      }
 
       if (
         file &&
@@ -37,30 +45,39 @@ function PostForm({ post }) {
           console.warn("DeleteFile failed:", error.code, error.message);
         }
       }
-      const dbPost = await appwriteService.updatePost(post.$id, {
-        //& Post ki saari fields update karo.
-        ...data,
-        featuredImage: file ? file.$id : undefined, //& Nayi image mili hai to uska ID rakho.
-      });
-      if (dbPost) {
-        navigate(`/post/${dbPost.$id}`);
+
+      if (file) {
+        updatedFields.featuredImage = file.$id;
       }
-      //& Agar naya post banana hai to :-
+
+      if (Object.keys(updatedFields).length > 0) {
+        const dbPost = await appwriteService.updatePost(post.$id, updatedFields);
+        if (dbPost) {
+          navigate(`/post/${dbPost.$id}`);
+        }
+      } else {
+        //& No changes made, just navigate to post
+        navigate(`/post/${post.$id}`);
+      }
     } else {
+      const newPostData = {};
+      if (data.title) newPostData.title = data.title;
+      if (data.slug) newPostData.slug = data.slug;
+      if (data.content) newPostData.content = data.content;
+      if (data.status) newPostData.status = data.status;
+
       let file = null;
       if (data.image && data.image[0]) {
-        //& Agar user ne image di hai to upload karo.
         file = await appwriteService.uploadFile(data.image[0]);
       }
 
       if (file) {
-        data.featuredImage = file.$id; //& Upload ki hui image ka ID data mein daal do.
+        newPostData.featuredImage = file.$id;
       }
 
-      const dbPost = await appwriteService.createPost({
-        ...data,
-        userId: userData.$id, //& User ka ID bhi daalo.
-      });
+      newPostData.userId = userData.$id;
+
+      const dbPost = await appwriteService.createPost(newPostData);
 
       if (dbPost) {
         navigate(`/post/${dbPost.$id}`);
@@ -70,9 +87,9 @@ function PostForm({ post }) {
 
   // const slugTransform = useCallback((value) => {
   //   if (value && typeof value === "string")
-  //     // const slug = value.toLowerCase().replace(/ /g, '-')
-  //     // setValue('slug' , slug)
-  //     // return slug
+  //      const slug = value.toLowerCase().replace(/ /g, '-')
+  //      setValue('slug' , slug)
+  //     return slug
 
   //     //& Use above lines or below lines.
 
