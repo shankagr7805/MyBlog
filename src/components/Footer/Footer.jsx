@@ -69,7 +69,7 @@ function Footer() {
                                 <li className="mb-4">
                                     <Link
                                         className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
+                                        to="/account"
                                     >
                                         Account
                                     </Link>
@@ -77,7 +77,7 @@ function Footer() {
                                 <li className="mb-4">
                                     <Link
                                         className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
+                                        to="/help"
                                     >
                                         Help
                                     </Link>
@@ -85,7 +85,7 @@ function Footer() {
                                 <li className="mb-4">
                                     <Link
                                         className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
+                                        to="/contact-us"
                                     >
                                         Contact Us
                                     </Link>
@@ -93,7 +93,7 @@ function Footer() {
                                 <li>
                                     <Link
                                         className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
+                                        to="/customer-support"
                                     >
                                         Customer Support
                                     </Link>
@@ -110,7 +110,7 @@ function Footer() {
                                 <li className="mb-4">
                                     <Link
                                         className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
+                                        to="/terms"
                                     >
                                         Terms &amp; Conditions
                                     </Link>
@@ -118,7 +118,7 @@ function Footer() {
                                 <li className="mb-4">
                                     <Link
                                         className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
+                                        to="/privacy-policy"
                                     >
                                         Privacy Policy
                                     </Link>
@@ -126,7 +126,7 @@ function Footer() {
                                 <li>
                                     <Link
                                         className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
+                                        to="/license"
                                     >
                                         Licensing
                                     </Link>

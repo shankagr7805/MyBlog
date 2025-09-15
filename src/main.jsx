@@ -16,6 +16,15 @@ import Features from "./pages/Features.jsx";
 import Pricing from "./pages/Pricing.jsx";
 import AffiliateProgram from "./pages/AffiliateProgram.jsx";
 import PressKit from "./pages/PressKit.jsx";
+import Account from "./pages/Account.jsx";
+import ChangePassword from "./pages/ChangePassword.jsx";
+import PrivacySection from "./pages/PrivacySection.jsx";
+import Help from "./pages/Help.jsx";
+import ContactUs from "./pages/ContactUs.jsx";
+import CustomerSupport from "./pages/CustomerSupport.jsx";
+import TermsAndConditions from "./pages/TermsAndConditions.jsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
+import Licensing from "./pages/Licensing.jsx";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +97,54 @@ const router = createBrowserRouter([
       {
         path: "/press-kit",
         element: <PressKit />,
+      },
+      {
+        path: "/account",
+        element: (
+          <AuthLayout authentication>
+            <Account />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/change-password",
+        element: (
+          <AuthLayout authentication>
+            <ChangePassword />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/privacy",
+        element: (
+          <AuthLayout authentication>
+            <PrivacySection />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/help",
+        element: <Help /> ,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs /> ,
+      },
+      {
+        path: "/customer-support",
+        element: <CustomerSupport /> ,
+      },
+      {
+        path: "/terms",
+        element: <TermsAndConditions /> ,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy/> ,
+      },
+      {
+        path: "/license",
+        element: <Licensing /> ,
       },
     ],
   },
