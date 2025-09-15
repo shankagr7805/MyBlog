@@ -10,7 +10,7 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState("");
 
   const login = async (data) => {
@@ -65,6 +65,7 @@ function Login() {
                 },
               })} //& Always use register like this and keep the parameter unique like here it is email.
             />
+            {errors.email && <p className="text-red-600">{errors.email.message}</p>}
             <Input 
             label="Password" 
             type="password"
@@ -79,6 +80,7 @@ function Login() {
                 },
             })}
             />
+            {errors.password && <p className="text-red-600">{errors.password.message}</p>}
             <Button 
             className='w-full'
             >Sign in</Button>

@@ -1,82 +1,102 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import {Provider} from 'react-redux'
-import store from './store/store.js'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Home.jsx'
-import { AuthLayout, Login } from './components/index.js'
-import AllPosts from './pages/AllPosts.jsx'
-import AddPost from './pages/AddPost.jsx'
-import EditPost from './pages/EditPost.jsx'
-import Post from './pages/Post.jsx'
-import Signup from './pages/Signup.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { Provider } from "react-redux";
+import store from "./store/store.js";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/Home.jsx";
+import { AuthLayout, Login } from "./components/index.js";
+import AllPosts from "./pages/AllPosts.jsx";
+import AddPost from "./pages/AddPost.jsx";
+import EditPost from "./pages/EditPost.jsx";
+import Post from "./pages/Post.jsx";
+import Signup from "./pages/Signup.jsx";
+import Features from "./pages/Features.jsx";
+import Pricing from "./pages/Pricing.jsx";
+import AffiliateProgram from "./pages/AffiliateProgram.jsx";
+import PressKit from "./pages/PressKit.jsx";
 
 const router = createBrowserRouter([
   {
-    path:'/',
+    path: "/",
     element: <App />,
     children: [
       {
-        path: '/',
-        element: <Home />
+        path: "/",
+        element: <Home />,
       },
       {
-        path: '/login',
+        path: "/login",
         element: (
           <AuthLayout authentication={false}>
             <Login />
           </AuthLayout>
-        )
+        ),
       },
       {
-        path: '/signup',
+        path: "/signup",
         element: (
           <AuthLayout authentication={false}>
             <Signup />
           </AuthLayout>
-        )
+        ),
       },
       {
-        path: '/all-posts',
+        path: "/all-posts",
         element: (
           <AuthLayout authentication>
             {" "}
-            <AllPosts/>
+            <AllPosts />
           </AuthLayout>
-        )
+        ),
       },
       {
-        path: '/add-post',
+        path: "/add-post",
         element: (
           <AuthLayout authentication>
             {" "}
             <AddPost />
           </AuthLayout>
-        )
+        ),
       },
       {
-        path: '/edit-post/:slug',
+        path: "/edit-post/:slug",
         element: (
           <AuthLayout authentication>
             {" "}
             <EditPost />
           </AuthLayout>
-        )
+        ),
       },
       {
-        path: '/post/:slug',
-        element: <Post />
+        path: "/post/:slug",
+        element: <Post />,
       },
-    ]
-  }
-])
+      {
+        path: "/features",
+        element: <Features />,
+      },
+      {
+        path: "/pricing",
+        element: <Pricing />,
+      },
+      {
+        path: "/affiliate-program",
+        element: <AffiliateProgram />,
+      },
+      {
+        path: "/press-kit",
+        element: <PressKit />,
+      },
+    ],
+  },
+]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </Provider>
-  </StrictMode>,
-)
+  </StrictMode>
+);

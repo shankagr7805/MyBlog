@@ -1,11 +1,14 @@
 import React from 'react'
+import logo from '../assets/Logo.png' ;
 
-function Logo({width = '100px'}) {
+function Logo({ width = '40px', height = '40px' }) {
   return (
-    <div>
-      Logo
-    </div>
-  )
+    <img
+      src={logo}
+      alt="Logo"
+      style={{width: width, height: height, objectFit: 'contain'}}
+    />  
+  );
 }
 
-export default Logo
+export default Logo;
